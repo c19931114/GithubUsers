@@ -16,8 +16,13 @@
 		F1D641CF270C8DBD002EB1C8 /* HTTPClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1D641CE270C8DBD002EB1C8 /* HTTPClient.swift */; };
 		F1D641D2270C8E60002EB1C8 /* TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1D641D1270C8E60002EB1C8 /* TabBarController.swift */; };
 		F1D641D5270C90F0002EB1C8 /* MineViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1D641D4270C90F0002EB1C8 /* MineViewController.swift */; };
-		F1D641D8270C91CD002EB1C8 /* UserData.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1D641D7270C91CD002EB1C8 /* UserData.swift */; };
+		F1D641D8270C91CD002EB1C8 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1D641D7270C91CD002EB1C8 /* User.swift */; };
 		F1D641DC270C9764002EB1C8 /* UserInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1D641DB270C9764002EB1C8 /* UserInfoViewController.swift */; };
+		F1D641E0270C9CC4002EB1C8 /* UserListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1D641DF270C9CC4002EB1C8 /* UserListViewModel.swift */; };
+		F1D641E3270C9CF2002EB1C8 /* MineViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1D641E2270C9CF2002EB1C8 /* MineViewModel.swift */; };
+		F1D641E6270CA269002EB1C8 /* Observable.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1D641E5270CA269002EB1C8 /* Observable.swift */; };
+		F1D641E9270CA30E002EB1C8 /* UserTableViewCellModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1D641E8270CA30E002EB1C8 /* UserTableViewCellModel.swift */; };
+		F1D641ED270CA5AD002EB1C8 /* UserTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1D641EC270CA5AD002EB1C8 /* UserTableViewCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -32,8 +37,13 @@
 		F1D641CE270C8DBD002EB1C8 /* HTTPClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HTTPClient.swift; sourceTree = "<group>"; };
 		F1D641D1270C8E60002EB1C8 /* TabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarController.swift; sourceTree = "<group>"; };
 		F1D641D4270C90F0002EB1C8 /* MineViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MineViewController.swift; sourceTree = "<group>"; };
-		F1D641D7270C91CD002EB1C8 /* UserData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserData.swift; sourceTree = "<group>"; };
+		F1D641D7270C91CD002EB1C8 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		F1D641DB270C9764002EB1C8 /* UserInfoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserInfoViewController.swift; sourceTree = "<group>"; };
+		F1D641DF270C9CC4002EB1C8 /* UserListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserListViewModel.swift; sourceTree = "<group>"; };
+		F1D641E2270C9CF2002EB1C8 /* MineViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MineViewModel.swift; sourceTree = "<group>"; };
+		F1D641E5270CA269002EB1C8 /* Observable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Observable.swift; sourceTree = "<group>"; };
+		F1D641E8270CA30E002EB1C8 /* UserTableViewCellModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserTableViewCellModel.swift; sourceTree = "<group>"; };
+		F1D641EC270CA5AD002EB1C8 /* UserTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserTableViewCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -86,6 +96,7 @@
 				F1D641C9270C8D26002EB1C8 /* UserListViewController.swift */,
 				F1D641D4270C90F0002EB1C8 /* MineViewController.swift */,
 				F1D641DB270C9764002EB1C8 /* UserInfoViewController.swift */,
+				F1D641EC270CA5AD002EB1C8 /* UserTableViewCell.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -93,6 +104,9 @@
 		F1D641C7270C8CEE002EB1C8 /* ViewModel */ = {
 			isa = PBXGroup;
 			children = (
+				F1D641DF270C9CC4002EB1C8 /* UserListViewModel.swift */,
+				F1D641E8270CA30E002EB1C8 /* UserTableViewCellModel.swift */,
+				F1D641E2270C9CF2002EB1C8 /* MineViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -101,7 +115,8 @@
 			isa = PBXGroup;
 			children = (
 				F1D641CE270C8DBD002EB1C8 /* HTTPClient.swift */,
-				F1D641D7270C91CD002EB1C8 /* UserData.swift */,
+				F1D641D7270C91CD002EB1C8 /* User.swift */,
+				F1D641E5270CA269002EB1C8 /* Observable.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -177,13 +192,18 @@
 			files = (
 				F1D641B3270C8B54002EB1C8 /* BaseViewController.swift in Sources */,
 				F1D641CF270C8DBD002EB1C8 /* HTTPClient.swift in Sources */,
+				F1D641ED270CA5AD002EB1C8 /* UserTableViewCell.swift in Sources */,
 				F1D641CA270C8D26002EB1C8 /* UserListViewController.swift in Sources */,
 				F1D641D5270C90F0002EB1C8 /* MineViewController.swift in Sources */,
 				F1D641DC270C9764002EB1C8 /* UserInfoViewController.swift in Sources */,
-				F1D641D8270C91CD002EB1C8 /* UserData.swift in Sources */,
+				F1D641E6270CA269002EB1C8 /* Observable.swift in Sources */,
+				F1D641D8270C91CD002EB1C8 /* User.swift in Sources */,
 				F1D641D2270C8E60002EB1C8 /* TabBarController.swift in Sources */,
 				F1D641AF270C8B54002EB1C8 /* AppDelegate.swift in Sources */,
+				F1D641E9270CA30E002EB1C8 /* UserTableViewCellModel.swift in Sources */,
 				F1D641B1270C8B54002EB1C8 /* SceneDelegate.swift in Sources */,
+				F1D641E3270C9CF2002EB1C8 /* MineViewModel.swift in Sources */,
+				F1D641E0270C9CC4002EB1C8 /* UserListViewModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

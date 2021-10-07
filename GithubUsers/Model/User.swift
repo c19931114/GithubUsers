@@ -1,5 +1,5 @@
 //
-//  UserData.swift
+//  User.swift
 //  GithubUsers
 //
 //  Created by Crystal on 2021/10/5.
@@ -9,13 +9,13 @@ import Foundation
 
 struct User: Codable {
     let id: Int
-    let avatar_url: String
+    let avatar_url: String?
     let type: String
-    let followers: Int
-    let following: Int
-    let name: String
-    let location: String
-    let email: String
+    let followers: Int?
+    let following: Int?
+    let name: String?
+    let location: String?
+    let email: String?
 }
 
 /*

@@ -14,7 +14,7 @@ class TabBarController: UITabBarController {
 
         view.backgroundColor = .white
         setupTab()
-        // Do any additional setup after loading the view.
+        setupGesture()
     }
     
     private func setupTab() {
@@ -33,7 +33,28 @@ class TabBarController: UITabBarController {
         }
         setViewControllers(controllers, animated: false)
     }
+    
+    private func setupGesture() {
+        
+        let leftSwipe = UISwipeGestureRecognizer(target: self, action: #selector(handleSwipes(_:)))
+        let rightSwipe = UISwipeGestureRecognizer(target: self, action: #selector(handleSwipes(_:)))
+        leftSwipe.direction = .left
+        rightSwipe.direction = .right
+        view.addGestureRecognizer(leftSwipe)
+        view.addGestureRecognizer(rightSwipe)
+    }
 
+    @objc func handleSwipes(_ sender:UISwipeGestureRecognizer) {
+        
+        switch sender.direction {
+        
+        case .left: selectedIndex += 1
+            
+        case .right: selectedIndex -= 1
+            
+        default: break
+        }
+    }
 }
 
 enum Tab {

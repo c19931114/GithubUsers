@@ -14,8 +14,10 @@ struct User: Codable {
     let followers: Int?
     let following: Int?
     let name: String?
+    let login: String
     let location: String?
     let email: String?
+    let url: String
 }
 
 /*

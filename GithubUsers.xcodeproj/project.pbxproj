@@ -23,6 +23,8 @@
 		F1D641E6270CA269002EB1C8 /* Observable.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1D641E5270CA269002EB1C8 /* Observable.swift */; };
 		F1D641E9270CA30E002EB1C8 /* UserTableViewCellModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1D641E8270CA30E002EB1C8 /* UserTableViewCellModel.swift */; };
 		F1D641ED270CA5AD002EB1C8 /* UserTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1D641EC270CA5AD002EB1C8 /* UserTableViewCell.swift */; };
+		F1D641F1270FF100002EB1C8 /* UIImageView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1D641F0270FF100002EB1C8 /* UIImageView+Extension.swift */; };
+		F1D641F5270FF130002EB1C8 /* CacheManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1D641F4270FF130002EB1C8 /* CacheManager.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -44,6 +46,8 @@
 		F1D641E5270CA269002EB1C8 /* Observable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Observable.swift; sourceTree = "<group>"; };
 		F1D641E8270CA30E002EB1C8 /* UserTableViewCellModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserTableViewCellModel.swift; sourceTree = "<group>"; };
 		F1D641EC270CA5AD002EB1C8 /* UserTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserTableViewCell.swift; sourceTree = "<group>"; };
+		F1D641F0270FF100002EB1C8 /* UIImageView+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImageView+Extension.swift"; sourceTree = "<group>"; };
+		F1D641F4270FF130002EB1C8 /* CacheManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CacheManager.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -81,6 +85,7 @@
 				F1D641C6270C8CD7002EB1C8 /* View */,
 				F1D641C7270C8CEE002EB1C8 /* ViewModel */,
 				F1D641C8270C8CFF002EB1C8 /* Model */,
+				F1D641EF270FF0D7002EB1C8 /* Extension */,
 				F1D641B7270C8B56002EB1C8 /* Assets.xcassets */,
 				F1D641B9270C8B56002EB1C8 /* LaunchScreen.storyboard */,
 				F1D641BC270C8B56002EB1C8 /* Info.plist */,
@@ -117,8 +122,17 @@
 				F1D641CE270C8DBD002EB1C8 /* HTTPClient.swift */,
 				F1D641D7270C91CD002EB1C8 /* User.swift */,
 				F1D641E5270CA269002EB1C8 /* Observable.swift */,
+				F1D641F4270FF130002EB1C8 /* CacheManager.swift */,
 			);
 			path = Model;
+			sourceTree = "<group>";
+		};
+		F1D641EF270FF0D7002EB1C8 /* Extension */ = {
+			isa = PBXGroup;
+			children = (
+				F1D641F0270FF100002EB1C8 /* UIImageView+Extension.swift */,
+			);
+			path = Extension;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -190,6 +204,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F1D641F1270FF100002EB1C8 /* UIImageView+Extension.swift in Sources */,
 				F1D641B3270C8B54002EB1C8 /* BaseViewController.swift in Sources */,
 				F1D641CF270C8DBD002EB1C8 /* HTTPClient.swift in Sources */,
 				F1D641ED270CA5AD002EB1C8 /* UserTableViewCell.swift in Sources */,
@@ -201,6 +216,7 @@
 				F1D641D2270C8E60002EB1C8 /* TabBarController.swift in Sources */,
 				F1D641AF270C8B54002EB1C8 /* AppDelegate.swift in Sources */,
 				F1D641E9270CA30E002EB1C8 /* UserTableViewCellModel.swift in Sources */,
+				F1D641F5270FF130002EB1C8 /* CacheManager.swift in Sources */,
 				F1D641B1270C8B54002EB1C8 /* SceneDelegate.swift in Sources */,
 				F1D641E3270C9CF2002EB1C8 /* MineViewModel.swift in Sources */,
 				F1D641E0270C9CC4002EB1C8 /* UserListViewModel.swift in Sources */,

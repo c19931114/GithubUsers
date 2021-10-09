@@ -7,29 +7,37 @@
 
 import Foundation
 
+enum RequestType {
+    
+    case allUsers
+    case oneUser(login: String)
+    
+    func getURL() -> URL? {
+        
+        let urlString = "https://api.github.com/users"
+        
+        switch self {
+        
+        case .allUsers: 
+            return URL(string: urlString)
+            
+        case .oneUser(let login):
+            return URL(string: "\(urlString)/\(login)")
+        }
+    }
+}
+
 class HTTPClient {
     
-    private lazy var baseUrl: URL = {
-        return URL(string: "https://api.github.com/users")!
-    }()
-    
-    let session: URLSession
-    
-    init(configuration: URLSessionConfiguration) {
-        self.session = URLSession(configuration: configuration)
-    }
-    
-    convenience init() {
-        self.init(configuration: .default)
-    }
+    let session: URLSession = URLSession(configuration: .default)
     
     typealias APICompletionHandler = ([User]?, Error?) -> Void
     
-    func fetchAPIData(completion: @escaping APICompletionHandler) {
-                
-        var request = URLRequest(url: baseUrl)
-        request.httpMethod = "GET"
-        request.setValue("application/json", forHTTPHeaderField: "Content-Type")
+    func request(type: RequestType,
+                 completion: @escaping APICompletionHandler) {
+        
+        guard let url = type.getURL() else { return }
+        let request = URLRequest(url: url)
         
         let task = session.dataTask(with: request) { (data, response, error) in
             
@@ -38,8 +46,14 @@ class HTTPClient {
                 if httpResponse.statusCode == 200 {
                     print("success")
                     do {
-                        let users = try JSONDecoder().decode([User].self, from: data)
-                        completion(users, nil)
+                        switch type {
+                        case .allUsers:
+                            let users = try JSONDecoder().decode([User].self, from: data)
+                            completion(users, nil)
+                        case .oneUser:
+                            let user = try JSONDecoder().decode(User.self, from: data)
+                            completion([user], nil)
+                        }
                     } catch let jsonError {
                         print("failed to decode")
                         completion(nil, jsonError)

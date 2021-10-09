@@ -10,16 +10,21 @@ import Foundation
 class UserListViewModel {
     
     var users: Observable<[UserTableViewCellModel]>
+    var page: Int
     
     init() {
+        
         self.users = Observable([])
+        self.page = 0
     }
     
-    func fetchUsers() {
-        HTTPClient().fetchAPIData { (data, error) in
+    func fetchData() {
+        
+        HTTPClient().request(type: .allUsers) { [weak self] (data, error) in
+            
             guard let users = data else { return }
             print("viewModel.fetchUsers")
-            self.users.value = users.map { UserTableViewCellModel($0) }
+            self?.users.value = users.compactMap { UserTableViewCellModel($0) }
         }
     }
 }

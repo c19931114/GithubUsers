@@ -10,7 +10,7 @@ import UIKit
 class UserTableViewCell: UITableViewCell {
     
     private lazy var avatarImageView: UIImageView = {
-        let imageView = UIImageView()//(frame: CGRect(x: 16, y: 16, width: 48, height: 48))
+        let imageView = UIImageView()
         imageView.layer.cornerRadius = 48 / 2
         imageView.layer.masksToBounds = true
         imageView.translatesAutoresizingMaskIntoConstraints = false
@@ -18,7 +18,7 @@ class UserTableViewCell: UITableViewCell {
         return imageView
     }()
     
-    private lazy var nameLabel: UILabel = {
+    private lazy var loginLabel: UILabel = {
         let label = UILabel()
         label.textColor = .black
         label.font = .boldSystemFont(ofSize: 24)
@@ -47,7 +47,7 @@ class UserTableViewCell: UITableViewCell {
     private func setupUI() {
         
         contentView.addSubview(avatarImageView)
-        contentView.addSubview(nameLabel)
+        contentView.addSubview(loginLabel)
         contentView.addSubview(typeLabel)
         
         NSLayoutConstraint.activate([
@@ -59,8 +59,8 @@ class UserTableViewCell: UITableViewCell {
             avatarImageView.widthAnchor.constraint(equalToConstant: 48)
         ])
         NSLayoutConstraint.activate([
-            nameLabel.centerYAnchor.constraint(equalTo: contentView.centerYAnchor, constant: -12),
-            nameLabel.leadingAnchor.constraint(equalTo: avatarImageView.trailingAnchor, constant: 16),
+            loginLabel.centerYAnchor.constraint(equalTo: contentView.centerYAnchor, constant: -12),
+            loginLabel.leadingAnchor.constraint(equalTo: avatarImageView.trailingAnchor, constant: 16),
         ])
         NSLayoutConstraint.activate([
             typeLabel.centerYAnchor.constraint(equalTo: contentView.centerYAnchor, constant: 12),
@@ -69,9 +69,11 @@ class UserTableViewCell: UITableViewCell {
     }
     
     func configCell(with viewModel: UserTableViewCellModel?) {
+        
         guard let user = viewModel else { return }
-//        avatarImageView.
-        nameLabel.text = "user.name"
+        loginLabel.text = user.login
         typeLabel.text = user.type
+        guard let urlString = user.imgURL else { return }
+        avatarImageView.load(urlString: urlString, login: user.login)
     }
 }

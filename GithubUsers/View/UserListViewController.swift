@@ -50,7 +50,7 @@ class UserListViewController: BaseViewController {
             }
         }
         
-        userListViewModel.fetchUsers()
+        userListViewModel.fetchData()
     }
 }
 

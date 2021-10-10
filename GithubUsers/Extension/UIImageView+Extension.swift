@@ -23,12 +23,10 @@ extension UIImageView {
                 DispatchQueue.main.async {
                     self?.image = image
                     CacheManager.shared.imageCache.setObject(image, forKey: login as NSString)
-//                    print("set cache image for key \(url)")
                 }
             }
             return
         }
-//        print("use cache image for key \(url)")
         self.image = image
     }
 }

@@ -12,8 +12,9 @@ class UserListViewController: BaseViewController {
     private lazy var userListViewModel = UserListViewModel()
     private let cellID = String(describing: UserTableViewCell.self)
     
-    private lazy var tableView: UITableView = {
+    fileprivate lazy var tableView: UITableView = {
         let tableView = UITableView()
+        tableView.separatorInset = .zero
         tableView.dataSource = self
         tableView.delegate = self
         tableView.register(UserTableViewCell.self, 
@@ -56,8 +57,8 @@ class UserListViewController: BaseViewController {
 extension UserListViewController: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        
-        return userListViewModel.users.value?.count ?? 0
+        let count = userListViewModel.getDisplayedCount()
+        return count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -75,12 +76,34 @@ extension UserListViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         guard let viewModels = userListViewModel.users.value else { return }
         let vc = UserInfoViewController(with: viewModels[indexPath.row])
-        vc.modalPresentationStyle = .overFullScreen
+        vc.modalPresentationStyle = .fullScreen
         present(vc, animated: true)
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         
         return 80 // UITableView.automaticDimension // 16+48+16
+    }
+
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        let height = scrollView.frame.size.height
+        let contentYoffset = scrollView.contentOffset.y
+        let distanceFromBottom = scrollView.contentSize.height - contentYoffset
+        if distanceFromBottom < height {
+            if userListViewModel.shouldLoadMore() {
+                let spinner = UIActivityIndicatorView(style: .medium)
+                spinner.frame = CGRect(x: 0, y: 0, width: tableView.bounds.width, height: 80)
+                tableView.tableFooterView = spinner
+                spinner.startAnimating()
+                tableView.tableFooterView?.isHidden = false
+                userListViewModel.updateCount { [weak self] in
+                    DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
+                        self?.tableView.reloadData()
+                    }
+                }
+            }
+        } else {
+            tableView.tableFooterView = nil
+        }
     }
 }

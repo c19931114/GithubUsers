@@ -1,5 +1,5 @@
 //
-//  MineViewModel.swift
+//  SingleUserViewModel.swift
 //  GithubUsers
 //
 //  Created by Crystal on 2021/10/5.
@@ -7,7 +7,7 @@
 
 import Foundation
 
-class MineViewModel {
+class SingleUserViewModel {
     
     var user: Observable<User>
     
@@ -15,7 +15,12 @@ class MineViewModel {
         self.user = Observable(nil)
     }
     
-    func fetchData() {
+    convenience init(user: User) {
+        self.init()
+        self.user = Observable(user)
+    }
+    
+    func fetchMyData() {
         
         HTTPClient().request(type: .oneUser(login: "c19931114")) { [weak self] (data, error) in
             

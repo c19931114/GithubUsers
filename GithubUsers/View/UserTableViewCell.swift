@@ -9,12 +9,13 @@ import UIKit
 
 class UserTableViewCell: UITableViewCell {
     
+    private lazy var viewModel = SingleUserViewModel()
+    
     private lazy var avatarImageView: UIImageView = {
         let imageView = UIImageView()
         imageView.layer.cornerRadius = 48 / 2
         imageView.layer.masksToBounds = true
         imageView.translatesAutoresizingMaskIntoConstraints = false
-        imageView.backgroundColor = .red
         return imageView
     }()
     
@@ -29,7 +30,7 @@ class UserTableViewCell: UITableViewCell {
     private lazy var typeLabel: UILabel = {
         let label = UILabel()
         label.textColor = .gray
-        label.font = .systemFont(ofSize: 20, weight: .light)
+        label.font = .systemFont(ofSize: 20)
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
@@ -37,13 +38,20 @@ class UserTableViewCell: UITableViewCell {
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         
+        selectionStyle = .none
         setupUI()
+        setupViewModel()
     }
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
     
+    override func prepareForReuse() {
+        super.prepareForReuse()
+        
+        avatarImageView.image = nil
+    }
     private func setupUI() {
         
         contentView.addSubview(avatarImageView)
@@ -68,12 +76,24 @@ class UserTableViewCell: UITableViewCell {
         ])
     }
     
-    func configCell(with viewModel: UserTableViewCellModel?) {
+    private func setupViewModel() {
+        viewModel.user.bind { [weak self] _ in
+            DispatchQueue.main.async {
+                self?.setupData()
+            }
+        }
+    }
+
+    func configCell(with cellModel: SingleUserViewModel) {
+        viewModel.user.value = cellModel.user.value
+    }
+    
+    private func setupData() {
         
-        guard let user = viewModel else { return }
+        guard let user = viewModel.user.value else { return }
         loginLabel.text = user.login
         typeLabel.text = user.type
-        guard let urlString = user.imgURL else { return }
+        guard let urlString = user.avatar_url else { return }
         avatarImageView.load(urlString: urlString, login: user.login)
     }
 }

@@ -9,7 +9,7 @@ import UIKit
 
 class MineViewController: BaseViewController {
     
-    private var mineViewModel = MineViewModel()
+    private lazy var mineViewModel = SingleUserViewModel()
     
     private lazy var bannerView: UIView = {
         let view = UIView()
@@ -31,7 +31,6 @@ class MineViewController: BaseViewController {
         imageView.layer.cornerRadius = 100 / 2
         imageView.layer.masksToBounds = true
         imageView.translatesAutoresizingMaskIntoConstraints = false
-        imageView.backgroundColor = .red
         return imageView
     }()
     
@@ -46,7 +45,7 @@ class MineViewController: BaseViewController {
     private lazy var loginLabel: UILabel = {
         let label = UILabel()
         label.textColor = .gray
-        label.font = .systemFont(ofSize: 20, weight: .light)
+        label.font = .systemFont(ofSize: 20)
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
@@ -61,6 +60,7 @@ class MineViewController: BaseViewController {
     
     private lazy var followLabel: UILabel = {
         let label = UILabel()
+        label.attributedText = genrateFollowText()
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
@@ -153,7 +153,7 @@ class MineViewController: BaseViewController {
                 self?.setupData()
             }
         }
-        mineViewModel.fetchData()
+        mineViewModel.fetchMyData()
     }
     
     private func setupData() {

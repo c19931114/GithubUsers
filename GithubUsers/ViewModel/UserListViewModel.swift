@@ -9,7 +9,7 @@ import Foundation
 
 class UserListViewModel {
     
-    var users: Observable<[UserTableViewCellModel]>
+    var users: Observable<[SingleUserViewModel]>
     var page: Int
     
     init() {
@@ -23,8 +23,7 @@ class UserListViewModel {
         HTTPClient().request(type: .allUsers) { [weak self] (data, error) in
             
             guard let users = data else { return }
-            print("viewModel.fetchUsers")
-            self?.users.value = users.compactMap { UserTableViewCellModel($0) }
+            self?.users.value = users.compactMap { SingleUserViewModel(user: $0) }
         }
     }
 }

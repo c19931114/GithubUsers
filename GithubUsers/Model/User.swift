@@ -17,7 +17,7 @@ struct User: Codable {
     let login: String
     let location: String?
     let email: String?
-    let url: String
+    let blog: String?
 }
 
 /*

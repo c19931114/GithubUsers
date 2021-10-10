@@ -9,7 +9,7 @@ import UIKit
 
 class UserListViewController: BaseViewController {
     
-    private var userListViewModel = UserListViewModel()
+    private lazy var userListViewModel = UserListViewModel()
     private let cellID = String(describing: UserTableViewCell.self)
     
     private lazy var tableView: UITableView = {
@@ -44,7 +44,6 @@ class UserListViewController: BaseViewController {
     private func setupViewModel() {
         
         userListViewModel.users.bind { [weak self] _ in
-            print("viewModel.users.bind")
             DispatchQueue.main.async {
                 self?.tableView.reloadData()
             }
@@ -63,10 +62,10 @@ extension UserListViewController: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
-        let cellID = String(describing: UserTableViewCell.self)
         let reuseCell = tableView.dequeueReusableCell(withIdentifier: cellID, for: indexPath)
-        guard let cell = reuseCell as? UserTableViewCell else { return reuseCell }
-        cell.configCell(with: userListViewModel.users.value?[indexPath.row])
+        guard let cell = reuseCell as? UserTableViewCell, 
+              let viewModels = userListViewModel.users.value else { return reuseCell }
+        cell.configCell(with: viewModels[indexPath.row])
         return cell
     }
 }
@@ -74,7 +73,10 @@ extension UserListViewController: UITableViewDataSource {
 extension UserListViewController: UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        
+        guard let viewModels = userListViewModel.users.value else { return }
+        let vc = UserInfoViewController(with: viewModels[indexPath.row])
+        vc.modalPresentationStyle = .overFullScreen
+        present(vc, animated: true)
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
